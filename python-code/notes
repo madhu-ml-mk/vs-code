@@ -24,8 +24,7 @@ These are just a few examples, and in reality, D Bank could have implemented a w
 
 
 ***************
-
-Sure, let's walk through the complete lifecycle of a Fraud Detection model at D Bank, from development to model serving, including a hypothetical scenario where the model is migrated to Google Cloud.
+ let's walk through the complete lifecycle of a Fraud Detection model at D Bank, from development to model serving, including a hypothetical scenario where the model is migrated to Google Cloud.
 
 ### 1. Development Phase
 
@@ -85,5 +84,11 @@ Sure, let's walk through the complete lifecycle of a Fraud Detection model at D 
 
 ### Conclusion
 
-The lifecycle of a Fraud Detection model at D Bank involves rigorous development, deployment, and ongoing maintenance phases to ensure accurate detection of fraudulent transactions while minimizing false positives. Migrating such a critical model to Google Cloud involves careful planning, data migration, environment setup, and thorough testing to leverage the cloud platform's scalability, security, and managed services effectively. Continuous monitoring and optimization are key to maintaining the model's efficacy and compliance with regulatory standards throughout its lifecycle on Google Cloud.
+The lifecycle of a Fraud Detection model at D Bank involves rigorous development, deployment,
+ and ongoing maintenance phases to ensure accurate detection of fraudulent transactions while minimizing false positives. 
+ Migrating such a critical model to Google Cloud involves careful planning, data migration, environment setup, 
+ and thorough testing to leverage the cloud platform's scalability, security, and managed services effectively.
+  Continuous monitoring and optimization are key to maintaining the model's efficacy and compliance with regulatory 
+  standards throughout its lifecycle on Google Cloud.
 
+  
