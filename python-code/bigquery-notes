@@ -205,4 +205,76 @@ FROM
 | 4        | 2500 | 450000          |
 | 2        | 1500 | 250000          |
 
-This shows how BigQuery ML allows you to seamlessly integrate predictions into your SQL workflows, providing outputs that are easy to interpret and integrate into further analysis or reporting.
+This shows how BigQuery ML allows you to seamlessly integrate predictions into your SQL workflows, providing outputs that are easy to interpret 
+and integrate into further analysis or reporting.
+
+While BigQuery ML is a powerful tool for many data analysis and machine learning tasks, it may not be the best choice for all scenarios. 
+Here are some tasks where using BigQuery might not be ideal:
+
+### 1. **Complex and Custom ML Models**
+- **Deep Learning Models**: BigQuery ML is not designed for deep learning tasks that require complex neural network architectures, such as image recognition or natural language processing. Tools like TensorFlow, PyTorch, or specialized platforms like Google Cloud AI Platform are more suitable.
+- **Highly Customized Models**: If your ML tasks require custom preprocessing, feature engineering, or model architectures beyond what BigQuery ML supports, you might be better off using a more flexible environment like a Jupyter notebook with scikit-learn or other ML libraries.
+
+### 2. **Real-Time Predictions**
+- **Low Latency Requirements**: BigQuery is optimized for batch processing and may not meet the low-latency requirements of real-time prediction systems. For real-time predictions, consider using Google Cloud's AI Platform Prediction, Vertex AI, or other real-time serving solutions.
+
+### 3. **Data Engineering and ETL Tasks**
+- **Complex ETL Pipelines**: While BigQuery can handle some ETL tasks, it might not be the best choice for complex data transformation pipelines that require orchestration, error handling, or integration with various data sources. Tools like Apache Airflow, Google Cloud Dataflow, or Apache Spark might be more appropriate.
+
+### 4. **Large Scale Data Preparation**
+- **Extensive Data Cleaning and Transformation**: For extensive data cleaning, transformation, and feature engineering that require iterative and interactive development, a combination of Spark or Pandas with a notebook environment might be more efficient.
+
+### 5. **Cost-Sensitive Applications**
+- **Cost Management**: While BigQuery can be cost-effective for large-scale analytics, it can become expensive if not managed properly, especially with frequent or complex queries on very large datasets. It’s important to monitor and optimize query costs. For some tasks, local processing or using cheaper storage and compute options might be more economical.
+
+### 6. **Advanced Statistical Analysis**
+- **Specialized Statistical Methods**: If your work requires advanced statistical techniques or specialized methods not supported by BigQuery ML, you might need to use R, Python, or specialized statistical software.
+
+### Examples of Tasks Better Not Done in BigQuery
+
+#### Example 1: Training a Deep Learning Model
+Training a convolutional neural network (CNN) for image classification:
+
+```python
+# Example in TensorFlow
+import tensorflow as tf
+from tensorflow.keras import layers, models
+
+model = models.Sequential()
+model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)))
+model.add(layers.MaxPooling2D((2, 2)))
+model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+model.add(layers.MaxPooling2D((2, 2)))
+model.add(layers.Flatten())
+model.add(layers.Dense(64, activation='relu'))
+model.add(layers.Dense(10, activation='softmax'))
+
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
+# Assume train_images and train_labels are prepared datasets
+model.fit(train_images, train_labels, epochs=5)
+```
+
+#### Example 2: Real-Time Predictions with Low Latency
+Using Vertex AI for real-time predictions:
+
+```python
+from google.cloud import aiplatform
+
+endpoint = aiplatform.Endpoint(endpoint_name='projects/PROJECT_ID/locations/LOCATION/endpoints/ENDPOINT_ID')
+
+# Example input data for prediction
+instance = {"feature1": value1, "feature2": value2}
+
+response = endpoint.predict([instance])
+print(response.predictions)
+```
+
+### Conclusion
+
+BigQuery ML excels in handling large-scale datasets with straightforward ML models using SQL. However, 
+for more complex, real-time, or highly customized tasks, other tools and platforms might be more appropriate.
+ Always consider the specific requirements of your task, such as model complexity, latency, cost, and flexibility, 
+ when choosing the right tool.
